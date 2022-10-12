@@ -23,8 +23,8 @@ public class CityService implements ICityService {
     }
 
     @Override
-    public void save(City city) {
-        cityRepository.save(city);
+    public City save(City city) {
+        return cityRepository.save(city);
     }
 
     @Override

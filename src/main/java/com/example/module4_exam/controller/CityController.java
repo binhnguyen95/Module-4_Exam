@@ -29,14 +29,13 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<City> editCity(@PathVariable Long id, @ModelAttribute City city) {
-        Optional<City> optionalCity = cityService.findById(id);
-        if (!optionalCity.isPresent()) {
+    public ResponseEntity<City> editCity(@PathVariable Long id, @RequestBody City city) {
+        Optional<City> city1 = cityService.findById(id);
+        if (!city1.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        city.setId(optionalCity.get().getId());
-        cityService.save(city);
-        return new ResponseEntity<>(city, HttpStatus.OK);
+        city.setId(city1.get().getId());
+        return new ResponseEntity<>(cityService.save(city),HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
