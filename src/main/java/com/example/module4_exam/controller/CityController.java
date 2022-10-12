@@ -22,6 +22,12 @@ public class CityController {
         return new ResponseEntity<>(cityService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<City> findById(@PathVariable Long id){
+        Optional<City> city1 =cityService.findById(id);
+        return city1.map(city -> new ResponseEntity<>(city, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @PostMapping()
     public ResponseEntity<City> createNewCity(@RequestBody City city) {
         cityService.save(city);
