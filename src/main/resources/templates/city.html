@@ -139,6 +139,7 @@
   }
 
   function updateCity() {
+    let id = $('#id').val();
     let name = $('#name').val();
     let country = $('#country').val();
     let area = $('#area').val();
@@ -146,6 +147,7 @@
     let gdp = $('#gdp').val();
     let description = $('#description').val();
     let newCity = {
+      id: id,
       name: name,
       country: country,
       area: area,
@@ -161,7 +163,7 @@
       type: "PUT",
       data: JSON.stringify(newCity),
       //tên API
-      url: "http://localhost:8080/city" + id,
+      url: "http://localhost:8080/city/" + id,
       //xử lý khi thành công
       success: function () {
         successHandler();
